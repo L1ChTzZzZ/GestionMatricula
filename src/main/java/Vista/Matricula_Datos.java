@@ -55,6 +55,7 @@ public class Matricula_Datos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,7 +89,7 @@ public class Matricula_Datos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 200, 150, 80));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, 150, 80));
 
         btnAtras.setText("<");
         btnAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -115,7 +116,7 @@ public class Matricula_Datos extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, 150, 80));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 150, 80));
 
         btnModificar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnModificar.setText("MODIFICAR");
@@ -125,7 +126,17 @@ public class Matricula_Datos extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 400, 150, 80));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 480, 150, 80));
+
+        btnAgregar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 150, 80));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\Fondo.png")); // NOI18N
@@ -210,6 +221,12 @@ public class Matricula_Datos extends javax.swing.JFrame {
     controller.modificarMatricula(matriculaModificada, this);
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+            FormMatricula Formulario = new FormMatricula();
+            Formulario.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +263,7 @@ public class Matricula_Datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
