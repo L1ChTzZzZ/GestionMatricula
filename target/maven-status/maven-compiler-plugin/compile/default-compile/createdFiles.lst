@@ -32,6 +32,7 @@ Vista\Matricula_Datos.class
 Modelo\Cconexion.class
 Modelo\Profesor.class
 Modelo\Implemento.class
+Modelo\ClasePrueba.class
 Vista\Login$5.class
 Modelo\Alumno.class
 Modelo\DAO\UsuarioDAO.class
