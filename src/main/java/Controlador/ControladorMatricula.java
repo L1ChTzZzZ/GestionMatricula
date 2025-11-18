@@ -11,9 +11,6 @@ import javax.swing.JOptionPane;
 public class ControladorMatricula {
     
     private MatriculaDAO dao = new MatriculaDAO();
-    private static FormMenuPrincipal menuPrincipal;
-    private static Matricula_Datos matriculaDatos;
-    
 
     public ControladorMatricula() {
         this.dao = new MatriculaDAO();
@@ -24,14 +21,7 @@ public class ControladorMatricula {
         return model;
     }
     
-    public void retrocederAMenu(Matricula_Datos vistaActual, Modelo.Usuario usuarioLogueado) {
 
-        vistaActual.dispose();
-
-        FormMenuPrincipal menuPrincipal = new FormMenuPrincipal(usuarioLogueado);
-
-        menuPrincipal.setVisible(true);
-    }
     
     public void eliminarMatricula(String idMatricula, Matricula_Datos vista) {
         if (idMatricula == null || idMatricula.isEmpty()) {
@@ -66,5 +56,11 @@ public class ControladorMatricula {
         } else {
             JOptionPane.showMessageDialog(vista, "Error al modificar. Revise claves foráneas o el formato de fecha.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void retrocederAMenu(Matricula_Datos vista, Modelo.Usuario usuarioLogueado) {
+        vista.dispose();
+        FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
+        menu.setVisible(true);
     }
 }

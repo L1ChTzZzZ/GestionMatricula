@@ -4,6 +4,7 @@ import controlador.ControladorMatricula;
 import javax.swing.table.DefaultTableModel;
 import Modelo.Cconexion;
 import Modelo.Matricula;
+import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -15,27 +16,29 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Matricula_Datos extends javax.swing.JFrame {
-
-    private Modelo.Usuario usuarioLogueado;
+    private Usuario usuarioLogueado;
     private ControladorMatricula controller = new ControladorMatricula();
 
     public Matricula_Datos() {
-
         initComponents();
         mostrarDatosEnVisor("MATRICULA");
         this.setLocationRelativeTo(null);
         this.setTitle("Matriculas");
+        this.setTitle("Gestión de Matricula");
     }
     
-    public Matricula_Datos(Modelo.Usuario usuario) {
+    public Matricula_Datos(Usuario usuario) {
         initComponents();
         this.usuarioLogueado = usuario; 
         mostrarDatosEnVisor("MATRICULA"); 
         this.setLocationRelativeTo(null);
+        this.setTitle("Gestión de Matricula");
     }
         public Modelo.Usuario getUsuarioLogueado() {
         return this.usuarioLogueado;
     }
+        
+        
 
     public void mostrarDatosEnVisor(String tabla) {
         DefaultTableModel modeloConDatos = controller.cargarDatosMatricula(tabla);
@@ -153,7 +156,6 @@ public class Matricula_Datos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        Modelo.Usuario usuarioParaPasar = this.getUsuarioLogueado();
         controller.retrocederAMenu(this, usuarioLogueado);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
@@ -222,8 +224,8 @@ public class Matricula_Datos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-            FormMatricula Formulario = new FormMatricula();
-            Formulario.setVisible(true);
+            FormMatricula formulario = new FormMatricula(usuarioLogueado);
+            formulario.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_btnAgregarActionPerformed
 

@@ -16,6 +16,7 @@ Vista\FormMenuPrincipal$1.class
 Modelo\Usuario.class
 Modelo\DAO\MatriculaDAO.class
 Modelo\DetalleClase.class
+Vista\FormMatricula$16.class
 Modelo\DAO\ProfesorDAO.class
 Vista\FormMatricula$2.class
 Vista\FormMatricula$9.class

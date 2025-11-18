@@ -8,7 +8,7 @@ import java.sql.Connection;
 
 
 public class FormMenuPrincipal extends javax.swing.JFrame {
-    private Usuario usuarioActual;
+    private Usuario usuarioLogueado;
     private JPopupMenu menuPerfil;
     
     public FormMenuPrincipal() {
@@ -20,7 +20,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     
     public FormMenuPrincipal(Usuario usuario) {
     initComponents();
-    this.usuarioActual = usuario;
+    this.usuarioLogueado = usuario;
     setLocationRelativeTo(null); // centra la ventana
     inicializarMenuPerfil();     // método que crearemos abajo
     }
@@ -28,8 +28,8 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private void inicializarMenuPerfil() {
         menuPerfil = new JPopupMenu();
 
-        JMenuItem itemNombre = new JMenuItem("Nombre: " + (usuarioActual != null ? usuarioActual.getNombre() : "Desconocido"));
-        JMenuItem itemRol    = new JMenuItem("Rol: " + (usuarioActual != null ? usuarioActual.getRol() : "-"));
+        JMenuItem itemNombre = new JMenuItem("Nombre: " + (usuarioLogueado != null ? usuarioLogueado.getNombre() : "Desconocido"));
+        JMenuItem itemRol    = new JMenuItem("Rol: " + (usuarioLogueado != null ? usuarioLogueado.getRol() : "-"));
         JMenuItem itemCerrar = new JMenuItem("Cerrar sesión");
 
         itemNombre.setEnabled(false);
@@ -54,8 +54,8 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         // Mostrar el popup al hacer clic en el botón
         btnPerfil.addActionListener(e -> {
             // actualizar los textos por si han cambiado
-            itemNombre.setText("Nombre: " + (usuarioActual != null ? usuarioActual.getNombre() : "Desconocido"));
-            itemRol.setText("Rol: " + (usuarioActual != null ? usuarioActual.getRol() : "-"));
+            itemNombre.setText("Nombre: " + (usuarioLogueado != null ? usuarioLogueado.getNombre() : "Desconocido"));
+            itemRol.setText("Rol: " + (usuarioLogueado != null ? usuarioLogueado.getRol() : "-"));
             menuPerfil.show(btnPerfil, 0, btnPerfil.getHeight());
         });
     }
@@ -228,7 +228,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        Profesores_Datos profesoresTabla = new Profesores_Datos(usuarioActual);
+        Profesores_Datos profesoresTabla = new Profesores_Datos(usuarioLogueado);
         profesoresTabla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -250,7 +250,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatriculaActionPerformed
-            Matricula_Datos matriculatabla = new Matricula_Datos();
+            Matricula_Datos matriculatabla = new Matricula_Datos(usuarioLogueado);
             matriculatabla.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_btnMatriculaActionPerformed

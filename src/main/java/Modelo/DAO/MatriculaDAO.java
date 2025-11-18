@@ -1,16 +1,19 @@
 package Modelo.dao; // o el paquete que uses para tu lógica de datos
 
+import Modelo.Alumno;
 import Modelo.Cconexion;
 import Modelo.Matricula;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MatriculaDAO {
-
+    
     private Cconexion con = new Cconexion();
 
     public DefaultTableModel mostrarMatriculas(String nombreTabla) {
@@ -19,7 +22,7 @@ public class MatriculaDAO {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id_Matricula");
         model.addColumn("Fecha_Pago");
-        model.addColumn("Monto total");
+        model.addColumn("Monto_total");
         model.addColumn("Tipo_Pago");
         model.addColumn("Id_Usuario");
         model.addColumn("Dni_Alumno");
@@ -58,7 +61,7 @@ public class MatriculaDAO {
 
         // Usamos un modelo anónimo que permite la edición
         DefaultTableModel model = new DefaultTableModel(
-                new Object[]{"Id_Matricula", "Fecha_Pago", "Monto total", "Tipo_Pago", "Id_Usuario", "Dni_Alumno", "Id_clase"}, 0) {
+                new Object[]{"Id_Matricula", "Fecha_Pago", "Monto_total", "Tipo_Pago", "Id_Usuario", "Dni_Alumno", "Id_clase"}, 0) {
 
             // Sobrescribimos el método isCellEditable
             @Override
@@ -116,6 +119,136 @@ public class MatriculaDAO {
         } catch (SQLException e) {
             System.err.println("Error al modificar matrícula en DAO: " + e.getMessage());
             return false;
+        }
+    }
+    
+        // GENERAR ID M0001
+    public String generarIdMatricula() {
+        String sql = "SELECT id_matricula FROM MATRICULA ORDER BY id_matricula DESC LIMIT 1";
+
+        try (Connection conexion = con.estableConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                String ultimo = rs.getString(1); 
+                int numero = Integer.parseInt(ultimo.substring(1)) + 1;
+                return "M" + String.format("%04d", numero);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "M0001";
+    }
+    
+    public void guardarMatricula(Matricula m) {
+        String sql = "INSERT INTO MATRICULA (id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, Dni_alumno, id_clase) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conexion = con.estableConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, m.getIdMatricula());
+            ps.setDate(2, m.getFechaPago());
+            ps.setDouble(3, m.getMontoTotal());
+            ps.setString(4, m.getTipoPago());
+            ps.setString(5, m.getIdUsuario());
+            ps.setString(6, m.getDniAlumno());
+            ps.setString(7, m.getIdClase());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean registrarMatriculaCompleta(
+            Alumno alumno,
+            String tipoPago,
+            Date fechaPago,
+            String idClase,
+            String idUsuario) {
+
+        Connection conexion = null;
+
+        try {
+            conexion = con.estableConexion();
+            if (conexion == null) {
+                System.out.println("No se pudo conectar a la BD");
+                return false;
+            }
+
+            conexion.setAutoCommit(false); // INICIAR TRANSACCIÓN
+
+            AlumnoDAO alumnoDAO = new AlumnoDAO();
+
+            // PASO 1: GUARDAR ALUMNO
+            alumnoDAO.guardarAlumno(alumno, conexion);
+
+            // PASO 2: GENERAR ID MATRÍCULA
+            String nuevoId = generarIdMatricula();
+
+            // PASO 3: OBTENER MONTO DE LA CLASE
+            double monto = 0;
+            String sqlMonto = "SELECT Mensualidad FROM CLASES WHERE id_clase = ?";
+
+            try (PreparedStatement psMonto = conexion.prepareStatement(sqlMonto)) {
+                psMonto.setString(1, idClase);
+                ResultSet rs = psMonto.executeQuery();
+                if (rs.next()) {
+                    monto = rs.getDouble("Mensualidad");
+                } else {
+                    throw new Exception("No existe la clase con ID: " + idClase);
+                }
+            }
+
+            // PASO 4: INSERTAR MATRÍCULA
+            String sqlMatricula = "INSERT INTO MATRICULA "
+                    + "(id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, Dni_alumno, id_clase) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            try (PreparedStatement ps = conexion.prepareStatement(sqlMatricula)) {
+                ps.setString(1, nuevoId);
+                ps.setDate(2, fechaPago);
+                ps.setDouble(3, monto);
+                ps.setString(4, tipoPago);
+                ps.setString(5, idUsuario);
+                ps.setString(6, alumno.getDniAlumno());
+                ps.setString(7, idClase);
+
+                ps.executeUpdate();
+            }
+
+            conexion.commit();  // TODO OK
+            return true;
+
+        } catch (Exception e) {
+
+            // ROLLBACK solo si cn no es null
+            if (con != null) {
+                try {
+                    conexion.rollback();
+                } catch (Exception ex) {
+                    System.out.println("Error en rollback: " + ex.getMessage());
+                }
+            }
+
+            System.out.println("Error registrando matrícula: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            if (con != null) {
+                try {
+                    conexion.setAutoCommit(true);
+                    conexion.close();
+                } catch (Exception ex) {
+                    System.out.println("Error cerrando conexión: " + ex.getMessage());
+                }
+            }
         }
     }
 }

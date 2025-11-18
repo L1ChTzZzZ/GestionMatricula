@@ -2,6 +2,8 @@
 package Vista;
 
 import Controlador.ControladorLogin;
+import Modelo.DAO.UsuarioDAO;
+import Modelo.Usuario;
 
 public class Login extends javax.swing.JFrame {
     private Controlador.ControladorLogin controlador;
@@ -26,6 +28,7 @@ public class Login extends javax.swing.JFrame {
             System.err.println("Error al establecer el icono: " + e.getMessage());
         }
     }
+    
     
     public javax.swing.JButton getBtnIngresar() {
         return btnIngresar;
