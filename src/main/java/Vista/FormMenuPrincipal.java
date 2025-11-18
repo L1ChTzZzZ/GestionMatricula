@@ -67,7 +67,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnVentanaAlumno = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnMatricula = new javax.swing.JButton();
@@ -102,14 +102,14 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\alumno.png")); // NOI18N
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnVentanaAlumno.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\alumno.png")); // NOI18N
+        btnVentanaAlumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentanaAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnVentanaAlumnoActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 149, 177, 169));
+        jPanel2.add(btnVentanaAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 149, 177, 169));
 
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\profesor.png")); // NOI18N
         jButton4.setAlignmentY(0.0F);
@@ -245,9 +245,11 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnPerfilActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnVentanaAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaAlumnoActionPerformed
+            Alumnos_Datos matriculatabla = new Alumnos_Datos(usuarioLogueado);
+            matriculatabla.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_btnVentanaAlumnoActionPerformed
 
     private void btnMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatriculaActionPerformed
             Matricula_Datos matriculatabla = new Matricula_Datos(usuarioLogueado);
@@ -260,9 +262,9 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPerfil;
     private javax.swing.JButton btnMatricula;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnVentanaAlumno;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;

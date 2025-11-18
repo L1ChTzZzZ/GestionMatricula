@@ -3,6 +3,7 @@ package controlador; // o el paquete que uses para tu controlador
 import Modelo.Matricula;
 import javax.swing.table.DefaultTableModel;
 import Modelo.dao.MatriculaDAO;
+import Vista.Alumnos_Datos;
 import Vista.FormMatricula;
 import Vista.FormMenuPrincipal;
 import Vista.Matricula_Datos;
@@ -70,6 +71,8 @@ public class ControladorMatricula {
         FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
         menu.setVisible(true);
     }
+    
+
     
     public void retrocederADatosMatricula(FormMatricula vista, Modelo.Usuario usuarioLogueado) {
         vista.dispose();
