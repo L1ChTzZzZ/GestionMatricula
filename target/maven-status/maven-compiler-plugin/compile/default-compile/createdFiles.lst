@@ -9,6 +9,7 @@ Vista\Matricula_Datos$1.class
 Vista\FormMatricula$6.class
 Vista\FormMatricula$14.class
 Vista\FormMatricula$3.class
+Vista\Profesores_Datos.class
 Modelo\DAO\DetalleImplementoDAO.class
 Vista\FormMatricula$5.class
 Vista\FormMenuPrincipal$1.class
@@ -33,6 +34,7 @@ Modelo\DetalleImplemento.class
 Vista\FormMatricula.class
 Vista\FormMenuPrincipal$7.class
 Vista\FormMatricula$1.class
+Vista\FormProfesor.class
 Vista\FormMatricula$12.class
 Modelo\Clase.class
 Vista\Matricula_Datos$6.class
@@ -49,6 +51,7 @@ Vista\FormMatricula$7.class
 Vista\FormMatricula$11.class
 Vista\Login$4.class
 Vista\Matricula_Datos$2.class
+Controlador\ControladorProfesor.class
 Vista\FormMenuPrincipal$6.class
 Modelo\DAO\MatriculaDAO$1.class
 Modelo\Cconexion.class

@@ -1,5 +1,6 @@
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Controlador\ControladorLogin.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Controlador\ControladorMatricula.java
+C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Controlador\ControladorProfesor.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Controlador\Principal.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Modelo\Alumno.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Modelo\Cconexion.java
@@ -22,5 +23,7 @@ C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Modelo\Profes
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Modelo\Usuario.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\FormMatricula.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\FormMenuPrincipal.java
+C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\FormProfesor.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\Login.java
 C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\Matricula_Datos.java
+C:\Users\HP\OneDrive\Documentos\NetBeansProjects\iws\src\main\java\Vista\Profesores_Datos.java

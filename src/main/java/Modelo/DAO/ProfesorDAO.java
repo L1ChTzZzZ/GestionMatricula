@@ -3,102 +3,147 @@ package Modelo.dao;
 import Modelo.Cconexion;
 import Modelo.Profesor;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ProfesorDAO {
-    private Connection con;
+    
+    private Cconexion conexion = new Cconexion();
 
-    public ProfesorDAO() {
-        Cconexion conexion = new Cconexion();
-        con = conexion.estableConexion();
+    // ===============================
+    //      MOSTRAR PROFESORES
+    // ===============================
+    public DefaultTableModel mostrarProfesores() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("DNI");
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");
+        model.addColumn("Correo");
+        model.addColumn("Dirección");
+        model.addColumn("Teléfono");
+
+        String sql = "SELECT * FROM PROFESORES";
+
+        try (Connection con = conexion.estableConexion();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            String[] datos = new String[6];
+            
+            while (rs.next()) {
+                datos[0] = rs.getString("Dni_Profesor");
+                datos[1] = rs.getString("Nombre");
+                datos[2] = rs.getString("Apellido");
+                datos[3] = rs.getString("Correo");
+                datos[4] = rs.getString("Direccion");
+                datos[5] = rs.getString("Telefono");
+                model.addRow(datos);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al listar profesores: " + e.getMessage());
+            return new DefaultTableModel();
+        }
+
+        return model;
     }
 
+    // ===============================
+    //      AGREGAR PROFESOR
+    // ===============================
     public boolean agregarProfesor(Profesor profesor) {
         String sql = "INSERT INTO PROFESORES (Dni_Profesor, Nombre, Apellido, Correo, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        try (Connection con = conexion.estableConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
             ps.setString(1, profesor.getDniProfesor());
             ps.setString(2, profesor.getNombre());
             ps.setString(3, profesor.getApellido());
             ps.setString(4, profesor.getCorreo());
             ps.setString(5, profesor.getDireccion());
             ps.setString(6, profesor.getTelefono());
-            ps.executeUpdate();
-            return true;
+            
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al agregar profesor: " + e.getMessage());
+            System.err.println("Error al agregar profesor: " + e.getMessage());
             return false;
         }
     }
 
-    public List<Profesor> listarProfesores() {
-        List<Profesor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM PROFESORES";
-        try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) {
-                Profesor p = new Profesor();
-                p.setDniProfesor(rs.getString("Dni_Profesor"));
-                p.setNombre(rs.getString("Nombre"));
-                p.setApellido(rs.getString("Apellido"));
-                p.setCorreo(rs.getString("Correo"));
-                p.setDireccion(rs.getString("Direccion"));
-                p.setTelefono(rs.getString("Telefono"));
-                lista.add(p);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al listar profesores: " + e.getMessage());
-        }
-        return lista;
-    }
-
+    // ===============================
+    //    ACTUALIZAR PROFESOR
+    // ===============================
     public boolean actualizarProfesor(Profesor profesor) {
         String sql = "UPDATE PROFESORES SET Nombre=?, Apellido=?, Correo=?, Direccion=?, Telefono=? WHERE Dni_Profesor=?";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        try (Connection con = conexion.estableConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
             ps.setString(1, profesor.getNombre());
             ps.setString(2, profesor.getApellido());
             ps.setString(3, profesor.getCorreo());
             ps.setString(4, profesor.getDireccion());
             ps.setString(5, profesor.getTelefono());
             ps.setString(6, profesor.getDniProfesor());
-            ps.executeUpdate();
-            return true;
+            
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar profesor: " + e.getMessage());
+            System.err.println("Error al actualizar profesor: " + e.getMessage());
             return false;
         }
     }
 
+    // ===============================
+    //     ELIMINAR PROFESOR
+    // ===============================
     public boolean eliminarProfesor(String dniProfesor) {
         String sql = "DELETE FROM PROFESORES WHERE Dni_Profesor=?";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        try (Connection con = conexion.estableConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
             ps.setString(1, dniProfesor);
-            ps.executeUpdate();
-            return true;
+            
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar profesor: " + e.getMessage());
+            System.err.println("Error al eliminar profesor: " + e.getMessage());
             return false;
         }
     }
 
+    // ===============================
+    //     BUSCAR POR DNI
+    // ===============================
     public Profesor buscarPorDni(String dniProfesor) {
-        Profesor p = null;
+        Profesor profesor = null;
         String sql = "SELECT * FROM PROFESORES WHERE Dni_Profesor=?";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        try (Connection con = conexion.estableConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
             ps.setString(1, dniProfesor);
             ResultSet rs = ps.executeQuery();
+            
             if (rs.next()) {
-                p = new Profesor();
-                p.setDniProfesor(rs.getString("Dni_Profesor"));
-                p.setNombre(rs.getString("Nombre"));
-                p.setApellido(rs.getString("Apellido"));
-                p.setCorreo(rs.getString("Correo"));
-                p.setDireccion(rs.getString("Direccion"));
-                p.setTelefono(rs.getString("Telefono"));
+                profesor = new Profesor();
+                profesor.setDniProfesor(rs.getString("Dni_Profesor"));
+                profesor.setNombre(rs.getString("Nombre"));
+                profesor.setApellido(rs.getString("Apellido"));
+                profesor.setCorreo(rs.getString("Correo"));
+                profesor.setDireccion(rs.getString("Direccion"));
+                profesor.setTelefono(rs.getString("Telefono"));
             }
+            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar profesor: " + e.getMessage());
+            System.err.println("Error al buscar profesor: " + e.getMessage());
         }
-        return p;
+        
+        return profesor;
     }
 }

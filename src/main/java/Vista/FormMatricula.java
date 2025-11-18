@@ -64,6 +64,8 @@ public class FormMatricula extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        dcFecha = new com.toedter.calendar.JDateChooser();
         BGMatricula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -262,13 +264,18 @@ public class FormMatricula extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 170, -1));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 140, -1));
 
         jLabel14.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel14.setText("TIPO DE PAGO:");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 100, 25));
+        jLabel14.setText("FECHA DEL PAGO:");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 25));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 310, 190));
+        jLabel21.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
+        jLabel21.setText("TIPO DE PAGO:");
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 100, 25));
+        jPanel3.add(dcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 140, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 310, 180));
 
         BGMatricula.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\Fondo.png")); // NOI18N
         jPanel1.add(BGMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -180, 1060, 840));
@@ -397,6 +404,7 @@ public class FormMatricula extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarAlumno;
     private javax.swing.JButton btnAtras;
     private javax.swing.JComboBox<String> cbIdClase;
+    private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -411,6 +419,7 @@ public class FormMatricula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
