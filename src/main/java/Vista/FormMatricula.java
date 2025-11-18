@@ -46,11 +46,9 @@ public class FormMatricula extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         Dni7 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cbIdClase = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtHorario = new javax.swing.JTextField();
@@ -58,7 +56,14 @@ public class FormMatricula extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtMensualidad = new javax.swing.JTextField();
         txtProfesor = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         btnAgregarAlumno = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
         BGMatricula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,10 +171,6 @@ public class FormMatricula extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel4.setText("ASIGNACION DE CLASES");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
-
         jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\pizarra.png")); // NOI18N
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
@@ -184,10 +185,7 @@ public class FormMatricula extends javax.swing.JFrame {
         });
         jPanel4.add(cbIdClase, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 190, -1));
 
-        jLabel14.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
-        jLabel14.setText("CLASE:");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 50, 25));
-
+        txtDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescripcionActionPerformed(evt);
@@ -228,6 +226,14 @@ public class FormMatricula extends javax.swing.JFrame {
         });
         jPanel4.add(txtProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 190, -1));
 
+        jLabel18.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel18.setText("ASIGNACION DE CLASES");
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
+        jLabel20.setText("CLASE:");
+        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 50, 25));
+
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 320, 380));
 
         btnAgregarAlumno.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -238,6 +244,31 @@ public class FormMatricula extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAgregarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, 160, 50));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel4.setText("INFORMACION DEL PAGO");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\tarjeta-de-debito.png")); // NOI18N
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "YAPE", "EFECTIVO", "TARJETA" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 170, -1));
+
+        jLabel14.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
+        jLabel14.setText("TIPO DE PAGO:");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 100, 25));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 310, 190));
 
         BGMatricula.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\Fondo.png")); // NOI18N
         jPanel1.add(BGMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -180, 1060, 840));
@@ -268,10 +299,6 @@ public class FormMatricula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Dni2ActionPerformed
 
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
     private void Dni4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dni4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Dni4ActionPerformed
@@ -288,8 +315,28 @@ public class FormMatricula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
+    private void Dni7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dni7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Dni7ActionPerformed
+
+    private void txtProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfesorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProfesorActionPerformed
+
+    private void txtMensualidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensualidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMensualidadActionPerformed
+
+    private void txtHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorarioActionPerformed
+
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionActionPerformed
+
     private void cbIdClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdClaseActionPerformed
- 
+
         String idSeleccionado = (String) cbIdClase.getSelectedItem();
         if (idSeleccionado == null || idSeleccionado.isEmpty()) return;
 
@@ -303,21 +350,9 @@ public class FormMatricula extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbIdClaseActionPerformed
 
-    private void Dni7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dni7ActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Dni7ActionPerformed
-
-    private void txtHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHorarioActionPerformed
-
-    private void txtMensualidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensualidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMensualidadActionPerformed
-
-    private void txtProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfesorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProfesorActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -362,6 +397,7 @@ public class FormMatricula extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarAlumno;
     private javax.swing.JButton btnAtras;
     private javax.swing.JComboBox<String> cbIdClase;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -371,7 +407,10 @@ public class FormMatricula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -381,6 +420,7 @@ public class FormMatricula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtHorario;

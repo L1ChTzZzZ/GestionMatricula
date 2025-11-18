@@ -55,5 +55,6 @@ Modelo\Cconexion.class
 Modelo\Profesor.class
 Modelo\Alumno.class
 Modelo\DAO\UsuarioDAO.class
+Vista\FormMatricula$15.class
 Vista\FormMatricula$4.class
 Modelo\ClaseCompleta.class
