@@ -3,6 +3,7 @@ package controlador; // o el paquete que uses para tu controlador
 import Modelo.Matricula;
 import javax.swing.table.DefaultTableModel;
 import Modelo.dao.MatriculaDAO;
+import Vista.FormMatricula;
 import Vista.FormMenuPrincipal;
 import Vista.Matricula_Datos;
 import javax.swing.JOptionPane;
@@ -61,6 +62,18 @@ public class ControladorMatricula {
     public void retrocederAMenu(Matricula_Datos vista, Modelo.Usuario usuarioLogueado) {
         vista.dispose();
         FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
+        menu.setVisible(true);
+    }
+    
+    public void retrocederAMenu2(FormMatricula vista, Modelo.Usuario usuarioLogueado) {
+        vista.dispose();
+        FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
+        menu.setVisible(true);
+    }
+    
+    public void retrocederADatosMatricula(FormMatricula vista, Modelo.Usuario usuarioLogueado) {
+        vista.dispose();
+        Matricula_Datos menu = new Matricula_Datos(usuarioLogueado);
         menu.setVisible(true);
     }
 }

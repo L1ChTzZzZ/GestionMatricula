@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import Modelo.Alumno;
@@ -14,13 +11,9 @@ import Modelo.dao.MatriculaDAO;
 import controlador.ControladorMatricula;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author HP
- */
 public class FormMatricula extends javax.swing.JFrame {
     private Usuario usuarioLogueado;
+    private ControladorMatricula controller = new ControladorMatricula();
     
     ClaseCompletaDAO cb = new ClaseCompletaDAO();
     
@@ -320,7 +313,7 @@ public class FormMatricula extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        
+        controller.retrocederADatosMatricula(this, usuarioLogueado);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
@@ -409,7 +402,7 @@ public class FormMatricula extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipoPagoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        controller.retrocederAMenu2(this, usuarioLogueado);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
