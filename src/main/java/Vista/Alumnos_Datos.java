@@ -4,6 +4,7 @@ package Vista;
 import Controlador.ControladorAlumno;
 import Modelo.Usuario;
 import controlador.ControladorMatricula;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Alumnos_Datos extends javax.swing.JFrame {
@@ -66,9 +67,19 @@ public class Alumnos_Datos extends javax.swing.JFrame {
         getContentPane().add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 167, 71));
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 167, 71));
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, 167, 71));
 
         btnAtras.setText("<");
@@ -96,6 +107,22 @@ public class Alumnos_Datos extends javax.swing.JFrame {
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         controller.retrocederAMenu3(this, usuarioLogueado);
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
+        int filaSeleccionada = tbAlumno.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String DniAlumno = tbAlumno.getValueAt(filaSeleccionada, 0).toString();
+        controller.eliminarMatricula(DniAlumno, this);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments

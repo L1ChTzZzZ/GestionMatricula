@@ -3,6 +3,7 @@ package Modelo.dao;
 
 import Modelo.Alumno;
 import Modelo.Cconexion;
+import Modelo.Matricula;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,52 @@ public class AlumnoDAO {
         // ... Código para llenar el modelo con rs.next() ...
         return model;
     }
-            
+    
+    
+    public boolean eliminarAlumno(String DniAlumno) {
+        String sql = "DELETE FROM ALUMNO WHERE DniAlumno = ?";
+        Cconexion con = new Cconexion();
+
+        try (Connection conexion = con.estableConexion(); // Usamos PreparedStatement
+                 java.sql.PreparedStatement pst = conexion.prepareStatement(sql)) {
+
+            pst.setString(1, DniAlumno); // Asigna el ID al primer '?'
+
+            int filasAfectadas = pst.executeUpdate();
+            return filasAfectadas > 0; // Retorna true si se eliminó al menos una fila
+
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar matrícula: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean modificarAlumno(Alumno alumno) {
+
+        String sql = "UPDATE ALUMNO SET "
+                + "Nombre=?, Apellido=?, Correo=?, Direccion=?, Telefono=? "
+                + "WHERE DniAlumno=?";
+
+        Cconexion con = new Cconexion();
+
+        try (Connection conexion = con.estableConexion(); PreparedStatement pst = conexion.prepareStatement(sql)) {
+
+            // Asignación de valores usando los Getters del objeto Matricula
+            pst.setString(1, alumno.getNombre()); // Usamos setDate para java.sql.Date
+            pst.setString(2, alumno.getApellido());
+            pst.setString(3, alumno.getCorreo());
+            pst.setString(4, alumno.getDireccion());
+            pst.setString(5, alumno.getTelefono());
+            pst.setString(6, alumno.getDniAlumno()); // WHERE
+
+            int filasAfectadas = pst.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error al modificar matrícula en DAO: " + e.getMessage());
+            return false;
+        }
+    }
             
     public void guardarAlumno(Alumno a, Connection conexion) {
         String sql = "INSERT INTO ALUMNO (DniAlumno, Nombre, Apellido, Correo, Direccion, Telefono) "
