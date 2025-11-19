@@ -11,22 +11,6 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setTitle("Ingresar Sesión");    
-        try {
-            java.net.URL url = getClass().getResource("img/LogoFavicon.png");
-
-            if (url != null) {
-                // 2. Crear el objeto Image
-                java.awt.Image icon = new javax.swing.ImageIcon(url).getImage();
-
-                // 3. Establecer el icono de la ventana
-                this.setIconImage(icon);
-            } else {
-                System.err.println("Advertencia: No se encontró el recurso del icono.");
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error al establecer el icono: " + e.getMessage());
-        }
     }
     
     
