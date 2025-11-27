@@ -1,6 +1,6 @@
 package Vista;
 
-import controlador.ControladorMatricula;
+import Controlador.ControladorMatricula;
 import javax.swing.table.DefaultTableModel;
 import Modelo.Cconexion;
 import Modelo.Matricula;
@@ -226,7 +226,6 @@ public class Matricula_Datos extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
             FormMatricula formulario = new FormMatricula(usuarioLogueado);
             formulario.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**

@@ -165,90 +165,89 @@ public class MatriculaDAO {
         }
     }
     
-    public boolean registrarMatriculaCompleta(
-            Alumno alumno,
-            String tipoPago,
-            Date fechaPago,
-            String idClase,
-            String idUsuario) {
+        public boolean registrarMatriculaCompleta(
+             String idAlumno, 
+             String tipoPago, 
+             Date fechaPago, 
+             String idClase, 
+             String idUsuario) {
 
-        Connection conexion = null;
+         Connection conexion = null;
 
-        try {
-            conexion = con.estableConexion();
-            if (conexion == null) {
-                System.out.println("No se pudo conectar a la BD");
-                return false;
-            }
+         try {
+             conexion = con.estableConexion();
+             if (conexion == null) {
+                 System.out.println("No se pudo conectar a la BD");
+                 return false;
+             }
 
-            conexion.setAutoCommit(false); // INICIAR TRANSACCIÓN
+             conexion.setAutoCommit(false); // iniciar transacción
 
-            AlumnoDAO alumnoDAO = new AlumnoDAO();
+             // 1. GENERAR ID MATRÍCULA
+             String nuevoId = generarIdMatricula();
 
-            // PASO 1: GUARDAR ALUMNO
-            alumnoDAO.guardarAlumno(alumno, conexion);
+             // 2. OBTENER MONTO DE LA CLASE
+             double monto = 0;
+             String sqlMonto = "SELECT Mensualidad FROM CLASES WHERE id_clase = ?";
 
-            // PASO 2: GENERAR ID MATRÍCULA
-            String nuevoId = generarIdMatricula();
+             try (PreparedStatement psMonto = conexion.prepareStatement(sqlMonto)) {
+                 psMonto.setString(1, idClase);
+                 ResultSet rs = psMonto.executeQuery();
 
-            // PASO 3: OBTENER MONTO DE LA CLASE
-            double monto = 0;
-            String sqlMonto = "SELECT Mensualidad FROM CLASES WHERE id_clase = ?";
+                 if (rs.next()) {
+                     monto = rs.getDouble("Mensualidad");
+                 } else {
+                     throw new Exception("No existe la clase con ID: " + idClase);
+                 }
+             }
 
-            try (PreparedStatement psMonto = conexion.prepareStatement(sqlMonto)) {
-                psMonto.setString(1, idClase);
-                ResultSet rs = psMonto.executeQuery();
-                if (rs.next()) {
-                    monto = rs.getDouble("Mensualidad");
-                } else {
-                    throw new Exception("No existe la clase con ID: " + idClase);
-                }
-            }
+             // 3. INSERTAR MATRÍCULA
+             String sqlMatricula = """
+                 INSERT INTO MATRICULA 
+                 (id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, id_alumno, id_clase)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)
+             """;
 
-            // PASO 4: INSERTAR MATRÍCULA
-            String sqlMatricula = "INSERT INTO MATRICULA "
-                    + "(id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, Dni_alumno, id_clase) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+             try (PreparedStatement ps = conexion.prepareStatement(sqlMatricula)) {
+                 ps.setString(1, nuevoId);
+                 ps.setDate(2, fechaPago);
+                 ps.setDouble(3, monto);
+                 ps.setString(4, tipoPago);
+                 ps.setString(5, idUsuario);
+                 ps.setString(6, idAlumno);   // <-- CORRECTO
+                 ps.setString(7, idClase);
+                 ps.executeUpdate();
+             }
 
-            try (PreparedStatement ps = conexion.prepareStatement(sqlMatricula)) {
-                ps.setString(1, nuevoId);
-                ps.setDate(2, fechaPago);
-                ps.setDouble(3, monto);
-                ps.setString(4, tipoPago);
-                ps.setString(5, idUsuario);
-                ps.setString(6, alumno.getDniAlumno());
-                ps.setString(7, idClase);
+             conexion.commit();
+             return true;
 
-                ps.executeUpdate();
-            }
+         } catch (Exception e) {
 
-            conexion.commit();  // TODO OK
-            return true;
+             if (conexion != null) {
+                 try {
+                     conexion.rollback();
+                 } catch (Exception ex) {
+                     System.out.println("Error en rollback: " + ex.getMessage());
+                 }
+             }
 
-        } catch (Exception e) {
+             System.out.println("Error registrando matrícula: " + e.getMessage());
+             e.printStackTrace();
+             return false;
 
-            // ROLLBACK solo si cn no es null
-            if (con != null) {
-                try {
-                    conexion.rollback();
-                } catch (Exception ex) {
-                    System.out.println("Error en rollback: " + ex.getMessage());
-                }
-            }
+         } finally {
 
-            System.out.println("Error registrando matrícula: " + e.getMessage());
-            e.printStackTrace();
-            return false;
+             if (conexion != null) {
+                 try {
+                     conexion.setAutoCommit(true);
+                     conexion.close();
+                 } catch (Exception ex) {
+                     System.out.println("Error cerrando conexión: " + ex.getMessage());
+                 }
+             }
 
-        } finally {
-            if (con != null) {
-                try {
-                    conexion.setAutoCommit(true);
-                    conexion.close();
-                } catch (Exception ex) {
-                    System.out.println("Error cerrando conexión: " + ex.getMessage());
-                }
-            }
-        }
-    }
+         }
+     }
+    
 }

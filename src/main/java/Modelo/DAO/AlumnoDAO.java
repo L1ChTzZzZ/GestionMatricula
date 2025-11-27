@@ -85,7 +85,7 @@ public class AlumnoDAO {
             return filasAfectadas > 0; // Retorna true si se eliminó al menos una fila
 
         } catch (SQLException e) {
-            System.err.println("Error al eliminar matrícula: " + e.getMessage());
+            System.err.println("Error al eliminar Alumno: " + e.getMessage());
             return false;
         }
     }
@@ -117,16 +117,11 @@ public class AlumnoDAO {
         }
     }
             
-    public void guardarAlumno(Alumno a, Connection conexion) {
-        String sql = "INSERT INTO ALUMNO (DniAlumno, Nombre, Apellido, Correo, Direccion, Telefono) "
-                + "VALUES (?, ?, ?, ?, ?, ?) "
-                + "ON DUPLICATE KEY UPDATE "
-                + "Nombre = VALUES(Nombre), "
-                + "Apellido = VALUES(Apellido), "
-                + "Correo = VALUES(Correo), "
-                + "Direccion = VALUES(Direccion), "
-                + "Telefono = VALUES(Telefono)";
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        public boolean insertarAlumno(Alumno a) {
+        String sql = "INSERT INTO ALUMNO (DniAlumno, Nombre, Apellido, Correo, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection cn = con.estableConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
             ps.setString(1, a.getDniAlumno());
             ps.setString(2, a.getNombre());
             ps.setString(3, a.getApellido());
@@ -134,9 +129,36 @@ public class AlumnoDAO {
             ps.setString(5, a.getDireccion());
             ps.setString(6, a.getTelefono());
             ps.executeUpdate();
+            return true;
+
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+    }
+    
+        public Alumno buscarPorDni(String dni) {
+        String sql = "SELECT * FROM ALUMNO WHERE DniAlumno = ?";
+
+        try (Connection cn = con.estableConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Alumno a = new Alumno();
+                a.setDniAlumno(rs.getString("DniAlumno"));
+                a.setNombre(rs.getString("Nombre"));
+                a.setApellido(rs.getString("Apellido"));
+                return a;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al buscar alumno por DNI: " + e.getMessage());
+        }
+
+        return null; 
     }
     
     
