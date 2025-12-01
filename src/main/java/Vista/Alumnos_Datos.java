@@ -45,6 +45,18 @@ public class Alumnos_Datos extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnAgregarAlumno = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        ListarAlumno = new javax.swing.JMenuItem();
+        RegistrarAlumno = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        ListarMatriculas = new javax.swing.JMenuItem();
+        RegistrarMatricula = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        ListarProfesores = new javax.swing.JMenuItem();
+        RegistrarProfesor = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1040, 580));
@@ -78,7 +90,7 @@ public class Alumnos_Datos extends javax.swing.JFrame {
         btnRefrescar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnRefrescar.setText("REFRESCAR");
         btnRefrescar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 281, 150, 80));
+        jPanel1.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, 150, 80));
 
         btnEliminar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnEliminar.setText("ELIMINAR");
@@ -88,7 +100,7 @@ public class Alumnos_Datos extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 150, 80));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, 150, 80));
 
         tbAlumno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tbAlumno.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,7 +116,7 @@ public class Alumnos_Datos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbAlumno);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 820, 410));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 820, 410));
 
         btnModificar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnModificar.setText("MODIFICAR");
@@ -114,7 +126,7 @@ public class Alumnos_Datos extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 481, 150, 80));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 460, 150, 80));
 
         btnAgregarAlumno.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnAgregarAlumno.setText("AGREGAR");
@@ -124,13 +136,87 @@ public class Alumnos_Datos extends javax.swing.JFrame {
                 btnAgregarAlumnoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 150, 80));
+        jPanel1.add(btnAgregarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, 150, 80));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documentos\\NetBeansProjects\\iws\\src\\main\\java\\img\\Fondo.png")); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -580, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 580));
+
+        jMenu1.setText("ALUMNOS");
+
+        ListarAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ListarAlumno.setText("Listar Alumno");
+        ListarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ListarAlumno);
+
+        RegistrarAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        RegistrarAlumno.setText("Registrar Alumno");
+        RegistrarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(RegistrarAlumno);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu4.setText("MATRICULA");
+
+        ListarMatriculas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ListarMatriculas.setText("Listar Matriculas");
+        ListarMatriculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarMatriculasActionPerformed(evt);
+            }
+        });
+        jMenu4.add(ListarMatriculas);
+
+        RegistrarMatricula.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        RegistrarMatricula.setText("Registrar Matricula");
+        RegistrarMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarMatriculaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(RegistrarMatricula);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu2.setText("PROFESORES");
+
+        ListarProfesores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ListarProfesores.setText("Listar Profesores");
+        ListarProfesores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarProfesoresActionPerformed(evt);
+            }
+        });
+        jMenu2.add(ListarProfesores);
+
+        RegistrarProfesor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        RegistrarProfesor.setText("Registrar Profesor");
+        RegistrarProfesor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarProfesorActionPerformed(evt);
+            }
+        });
+        jMenu2.add(RegistrarProfesor);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("CLASES");
+        jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("IMPLEMENTOS");
+        jMenuBar1.add(jMenu5);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,6 +245,41 @@ public class Alumnos_Datos extends javax.swing.JFrame {
         FormAlumno formulario = new FormAlumno(usuarioLogueado);
         formulario.setVisible(true);
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
+
+    private void ListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarAlumnoActionPerformed
+        Matricula_Datos matriculatabla = new Matricula_Datos(usuarioLogueado);
+        matriculatabla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ListarAlumnoActionPerformed
+
+    private void RegistrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarAlumnoActionPerformed
+        FormAlumno formulario = new FormAlumno(usuarioLogueado);
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_RegistrarAlumnoActionPerformed
+
+    private void ListarMatriculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarMatriculasActionPerformed
+        Matricula_Datos matriculatabla = new Matricula_Datos(usuarioLogueado);
+        matriculatabla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ListarMatriculasActionPerformed
+
+    private void RegistrarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarMatriculaActionPerformed
+        FormMatricula formulario = new FormMatricula(usuarioLogueado);
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_RegistrarMatriculaActionPerformed
+
+    private void ListarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProfesoresActionPerformed
+        Profesores_Datos formulario = new Profesores_Datos(usuarioLogueado);
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ListarProfesoresActionPerformed
+
+    private void RegistrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarProfesorActionPerformed
+        FormProfesor formulario = new FormProfesor();
+        formulario.setVisible(true);
+    }//GEN-LAST:event_RegistrarProfesorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +318,12 @@ public class Alumnos_Datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ListarAlumno;
+    private javax.swing.JMenuItem ListarMatriculas;
+    private javax.swing.JMenuItem ListarProfesores;
+    private javax.swing.JMenuItem RegistrarAlumno;
+    private javax.swing.JMenuItem RegistrarMatricula;
+    private javax.swing.JMenuItem RegistrarProfesor;
     private javax.swing.JButton btnAgregarAlumno;
     private javax.swing.JButton btnAtras1;
     private javax.swing.JButton btnEliminar;
@@ -206,6 +333,12 @@ public class Alumnos_Datos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbAlumno;
