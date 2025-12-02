@@ -71,7 +71,10 @@ public class Matricula_Datos extends javax.swing.JFrame {
         ListarProfesores = new javax.swing.JMenuItem();
         RegistrarProfesor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        ListarClases = new javax.swing.JMenuItem();
+        Implementos = new javax.swing.JMenu();
+        ListarImplementos = new javax.swing.JMenuItem();
+        AgregarImplemento = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -227,10 +230,39 @@ public class Matricula_Datos extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("CLASES");
+
+        ListarClases.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        ListarClases.setText("Listar Clases");
+        ListarClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarClasesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(ListarClases);
+
         jMenuBar1.add(jMenu3);
 
-        jMenu5.setText("IMPLEMENTOS");
-        jMenuBar1.add(jMenu5);
+        Implementos.setText("IMPLEMENTOS");
+
+        ListarImplementos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ListarImplementos.setText("Listar Implementos");
+        ListarImplementos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarImplementosActionPerformed(evt);
+            }
+        });
+        Implementos.add(ListarImplementos);
+
+        AgregarImplemento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        AgregarImplemento.setText("Agregar Implemento");
+        AgregarImplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarImplementoActionPerformed(evt);
+            }
+        });
+        Implementos.add(AgregarImplemento);
+
+        jMenuBar1.add(Implementos);
 
         setJMenuBar(jMenuBar1);
 
@@ -323,7 +355,6 @@ public class Matricula_Datos extends javax.swing.JFrame {
     private void RegistrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarAlumnoActionPerformed
         FormAlumno formulario = new FormAlumno(usuarioLogueado);
         formulario.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_RegistrarAlumnoActionPerformed
 
     private void ListarMatriculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarMatriculasActionPerformed
@@ -335,7 +366,6 @@ public class Matricula_Datos extends javax.swing.JFrame {
     private void RegistrarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarMatriculaActionPerformed
         FormMatricula formulario = new FormMatricula(usuarioLogueado);
         formulario.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_RegistrarMatriculaActionPerformed
 
     private void ListarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProfesoresActionPerformed
@@ -348,6 +378,23 @@ public class Matricula_Datos extends javax.swing.JFrame {
         FormProfesor formulario = new FormProfesor();
         formulario.setVisible(true);
     }//GEN-LAST:event_RegistrarProfesorActionPerformed
+
+    private void ListarClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarClasesActionPerformed
+        Clases_Datos formulario = new Clases_Datos(usuarioLogueado);
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ListarClasesActionPerformed
+
+    private void ListarImplementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarImplementosActionPerformed
+        Implementos_Datos formulario = new Implementos_Datos(usuarioLogueado);
+        formulario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ListarImplementosActionPerformed
+
+    private void AgregarImplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarImplementoActionPerformed
+        FormImplementos formulario = new FormImplementos();
+        formulario.setVisible(true);
+    }//GEN-LAST:event_AgregarImplementoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,7 +432,11 @@ public class Matricula_Datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AgregarImplemento;
+    private javax.swing.JMenu Implementos;
     private javax.swing.JMenuItem ListarAlumno;
+    private javax.swing.JMenuItem ListarClases;
+    private javax.swing.JMenuItem ListarImplementos;
     private javax.swing.JMenuItem ListarMatriculas;
     private javax.swing.JMenuItem ListarProfesores;
     private javax.swing.JMenuItem RegistrarAlumno;
@@ -403,7 +454,6 @@ public class Matricula_Datos extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

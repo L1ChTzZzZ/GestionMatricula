@@ -95,9 +95,10 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         ListarProfesores = new javax.swing.JMenuItem();
         RegistrarProfesor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        ListarClases = new javax.swing.JMenuItem();
+        Implementos = new javax.swing.JMenu();
+        ListarImplementos = new javax.swing.JMenuItem();
+        AgregarImplemento = new javax.swing.JMenuItem();
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +174,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
         jLabel4.setText("CLASES");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 324, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 320, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 1, 14)); // NOI18N
         jLabel5.setText("MATRICULA");
@@ -280,24 +281,38 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("CLASES");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jMenuItem1.setText("Listar Clases");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        ListarClases.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        ListarClases.setText("Listar Clases");
+        ListarClases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                ListarClasesActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(ListarClases);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu5.setText("IMPLEMENTOS");
+        Implementos.setText("IMPLEMENTOS");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setText("Listar Implementos");
-        jMenu5.add(jMenuItem2);
+        ListarImplementos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        ListarImplementos.setText("Listar Implementos");
+        ListarImplementos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarImplementosActionPerformed(evt);
+            }
+        });
+        Implementos.add(ListarImplementos);
 
-        jMenuBar1.add(jMenu5);
+        AgregarImplemento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        AgregarImplemento.setText("Agregar Implemento");
+        AgregarImplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarImplementoActionPerformed(evt);
+            }
+        });
+        Implementos.add(AgregarImplemento);
+
+        jMenuBar1.add(Implementos);
 
         setJMenuBar(jMenuBar1);
 
@@ -345,7 +360,6 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private void RegistrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarAlumnoActionPerformed
             FormAlumno formulario = new FormAlumno(usuarioLogueado);
             formulario.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_RegistrarAlumnoActionPerformed
 
     private void ListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarAlumnoActionPerformed
@@ -363,7 +377,6 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private void RegistrarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarMatriculaActionPerformed
             FormMatricula formulario = new FormMatricula(usuarioLogueado);
             formulario.setVisible(true);
-            this.setVisible(false);
     }//GEN-LAST:event_RegistrarMatriculaActionPerformed
 
     private void ListarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProfesoresActionPerformed
@@ -377,13 +390,30 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
             formulario.setVisible(true);
     }//GEN-LAST:event_RegistrarProfesorActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void ListarClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarClasesActionPerformed
+            Clases_Datos formulario = new Clases_Datos(usuarioLogueado);
+            formulario.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_ListarClasesActionPerformed
+
+    private void ListarImplementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarImplementosActionPerformed
+            Implementos_Datos formulario = new Implementos_Datos(usuarioLogueado);
+            formulario.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_ListarImplementosActionPerformed
+
+    private void AgregarImplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarImplementoActionPerformed
+            FormImplementos formulario = new FormImplementos();
+            formulario.setVisible(true);
+    }//GEN-LAST:event_AgregarImplementoActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AgregarImplemento;
+    private javax.swing.JMenu Implementos;
     private javax.swing.JMenuItem ListarAlumno;
+    private javax.swing.JMenuItem ListarClases;
+    private javax.swing.JMenuItem ListarImplementos;
     private javax.swing.JMenuItem ListarMatriculas;
     private javax.swing.JMenuItem ListarProfesores;
     private javax.swing.JPanel PanelPerfil;
@@ -408,10 +438,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAvatar;
     // End of variables declaration//GEN-END:variables
