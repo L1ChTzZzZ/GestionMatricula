@@ -79,8 +79,6 @@ public class ControladorMatricula {
     
     public void retrocederADatosMatricula(FormMatricula vista, modelos.Usuario usuarioLogueado) {
         vista.dispose();
-        Matricula_Datos menu = new Matricula_Datos(usuarioLogueado);
-        menu.setVisible(true);
     }
     
     public void retrocederADatosAlumno(FormAlumno vista, modelos.Usuario usuarioLogueado) {
