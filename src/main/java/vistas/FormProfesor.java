@@ -54,21 +54,6 @@ public class FormProfesor extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         BGMatricula = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        ListarAlumno = new javax.swing.JMenuItem();
-        RegistrarAlumno = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        ListarMatriculas = new javax.swing.JMenuItem();
-        RegistrarMatricula = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        ListarProfesores = new javax.swing.JMenuItem();
-        RegistrarProfesor = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        ListarClases = new javax.swing.JMenuItem();
-        Implementos = new javax.swing.JMenu();
-        ListarImplementos = new javax.swing.JMenuItem();
-        AgregarImplemento = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,73 +139,6 @@ public class FormProfesor extends javax.swing.JFrame {
         BGMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Fondo.png"))); // NOI18N
         jPanel2.add(BGMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -180, 670, 800));
 
-        jMenu1.setText("ALUMNOS");
-
-        ListarAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        ListarAlumno.setText("Listar Alumno");
-        ListarAlumno.addActionListener(this::ListarAlumnoActionPerformed);
-        jMenu1.add(ListarAlumno);
-
-        RegistrarAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        RegistrarAlumno.setText("Registrar Alumno");
-        RegistrarAlumno.addActionListener(this::RegistrarAlumnoActionPerformed);
-        jMenu1.add(RegistrarAlumno);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu4.setText("MATRICULA");
-
-        ListarMatriculas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        ListarMatriculas.setText("Listar Matriculas");
-        ListarMatriculas.addActionListener(this::ListarMatriculasActionPerformed);
-        jMenu4.add(ListarMatriculas);
-
-        RegistrarMatricula.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        RegistrarMatricula.setText("Registrar Matricula");
-        RegistrarMatricula.addActionListener(this::RegistrarMatriculaActionPerformed);
-        jMenu4.add(RegistrarMatricula);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu2.setText("PROFESORES");
-
-        ListarProfesores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        ListarProfesores.setText("Listar Profesores");
-        ListarProfesores.addActionListener(this::ListarProfesoresActionPerformed);
-        jMenu2.add(ListarProfesores);
-
-        RegistrarProfesor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        RegistrarProfesor.setText("Registrar Profesor");
-        RegistrarProfesor.addActionListener(this::RegistrarProfesorActionPerformed);
-        jMenu2.add(RegistrarProfesor);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("CLASES");
-
-        ListarClases.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        ListarClases.setText("Listar Clases");
-        ListarClases.addActionListener(this::ListarClasesActionPerformed);
-        jMenu3.add(ListarClases);
-
-        jMenuBar1.add(jMenu3);
-
-        Implementos.setText("IMPLEMENTOS");
-
-        ListarImplementos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        ListarImplementos.setText("Listar Implementos");
-        ListarImplementos.addActionListener(this::ListarImplementosActionPerformed);
-        Implementos.add(ListarImplementos);
-
-        AgregarImplemento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        AgregarImplemento.setText("Agregar Implemento");
-        AgregarImplemento.addActionListener(this::AgregarImplementoActionPerformed);
-        Implementos.add(AgregarImplemento);
-
-        jMenuBar1.add(Implementos);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,56 +209,6 @@ public class FormProfesor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
-    private void ListarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarAlumnoActionPerformed
-        Matricula_Datos matriculatabla = new Matricula_Datos();
-        matriculatabla.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ListarAlumnoActionPerformed
-
-    private void RegistrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarAlumnoActionPerformed
-        FormAlumno formulario = new FormAlumno();
-        formulario.setVisible(true);
-    }//GEN-LAST:event_RegistrarAlumnoActionPerformed
-
-    private void ListarMatriculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarMatriculasActionPerformed
-        Matricula_Datos matriculatabla = new Matricula_Datos();
-        matriculatabla.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ListarMatriculasActionPerformed
-
-    private void RegistrarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarMatriculaActionPerformed
-        FormMatricula formulario = new FormMatricula();
-        formulario.setVisible(true);
-    }//GEN-LAST:event_RegistrarMatriculaActionPerformed
-
-    private void ListarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProfesoresActionPerformed
-        Profesores_Datos formulario = new Profesores_Datos();
-        formulario.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ListarProfesoresActionPerformed
-
-    private void RegistrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarProfesorActionPerformed
-        FormProfesor formulario = new FormProfesor();
-        formulario.setVisible(true);
-    }//GEN-LAST:event_RegistrarProfesorActionPerformed
-
-    private void ListarClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarClasesActionPerformed
-        Clases_Datos formulario = new Clases_Datos();
-        formulario.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ListarClasesActionPerformed
-
-    private void ListarImplementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarImplementosActionPerformed
-        Implementos_Datos formulario = new Implementos_Datos();
-        formulario.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_ListarImplementosActionPerformed
-
-    private void AgregarImplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarImplementoActionPerformed
-        FormImplementos formulario = new FormImplementos();
-        formulario.setVisible(true);
-    }//GEN-LAST:event_AgregarImplementoActionPerformed
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -364,17 +232,7 @@ public class FormProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AgregarImplemento;
     private javax.swing.JLabel BGMatricula;
-    private javax.swing.JMenu Implementos;
-    private javax.swing.JMenuItem ListarAlumno;
-    private javax.swing.JMenuItem ListarClases;
-    private javax.swing.JMenuItem ListarImplementos;
-    private javax.swing.JMenuItem ListarMatriculas;
-    private javax.swing.JMenuItem ListarProfesores;
-    private javax.swing.JMenuItem RegistrarAlumno;
-    private javax.swing.JMenuItem RegistrarMatricula;
-    private javax.swing.JMenuItem RegistrarProfesor;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAtras;
     private javax.swing.JLabel jLabel1;
@@ -388,11 +246,6 @@ public class FormProfesor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtApellido;
