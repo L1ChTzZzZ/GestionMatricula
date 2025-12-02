@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import modelos.Alumno;
 import modelos.Cconexion;
 
 public class ImplementoDAO {
@@ -109,4 +110,114 @@ public class ImplementoDAO {
             return false;
         }
     }
+            
+            
+               // GENERAR ID I0001
+        public String generarIdImplemento() {
+        String sql = "SELECT id_implemento FROM IMPLEMENTO ORDER BY id_implemento DESC LIMIT 1";
+
+        try (Connection conexion = con.estableConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                String ultimo = rs.getString(1); 
+                int numero = Integer.parseInt(ultimo.substring(1)) + 1;
+                return "I" + String.format("%04d", numero);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "I0001";
+    }
+    
+    public void guardarImplemento(Implemento i) {
+        String sql = "INSERT INTO IMPLEMENTO (id_implemento, Nombre, Tipo, Stock, Precio) "
+                   + "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conexion = con.estableConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, i.getIdImplemento());
+            ps.setString(2, i.getNombre());
+            ps.setString(3, i.getTipo());
+            ps.setInt(4, i.getStock());
+            ps.setDouble(5, i.getPrecio());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+        public boolean registrarImplementoCompleto(
+             String id_implemento, 
+             String Nombre, 
+             String Tipo, 
+             int Stock, 
+             Double Precio) {
+
+         Connection conexion = null;
+
+         try {
+             conexion = con.estableConexion();
+             if (conexion == null) {
+                 System.out.println("No se pudo conectar a la BD");
+                 return false;
+             }
+
+             conexion.setAutoCommit(false); // iniciar transacción
+
+             // 1. GENERAR ID MATRÍCULA
+             String nuevoId = generarIdImplemento();
+
+             // 3. INSERTAR MATRÍCULA
+             String sqlMatricula = """
+                 INSERT INTO IMPLEMENTO 
+                 (id_implemento, Nombre, Tipo, Stock, Precio)
+                 VALUES (?, ?, ?, ?, ?)
+             """;
+
+             try (PreparedStatement ps = conexion.prepareStatement(sqlMatricula)) {
+                 ps.setString(1, nuevoId);
+                 ps.setString(2, Nombre);
+                 ps.setString(3, Tipo);
+                 ps.setInt(4, Stock);
+                 ps.setDouble(5, Precio);
+                 ps.executeUpdate();
+             }
+
+             conexion.commit();
+             return true;
+
+         } catch (Exception e) {
+
+             if (conexion != null) {
+                 try {
+                     conexion.rollback();
+                 } catch (Exception ex) {
+                     System.out.println("Error en rollback: " + ex.getMessage());
+                 }
+             }
+
+             System.out.println("Error registrando Implemento: " + e.getMessage());
+             e.printStackTrace();
+             return false;
+
+         } finally {
+
+             if (conexion != null) {
+                 try {
+                     conexion.setAutoCommit(true);
+                     conexion.close();
+                 } catch (Exception ex) {
+                     System.out.println("Error cerrando conexión: " + ex.getMessage());
+                 }
+             }
+
+         }
+     }
 }

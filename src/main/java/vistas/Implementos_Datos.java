@@ -47,6 +47,7 @@ public class Implementos_Datos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -62,6 +63,16 @@ public class Implementos_Datos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAgregar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, 150, 80));
 
         jButton2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jButton2.setText("REFRESCAR");
@@ -181,6 +192,11 @@ public class Implementos_Datos extends javax.swing.JFrame {
         controller.modificarImplementos(implementoModificado, this);
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        FormImplementos formulario = new FormImplementos(usuarioLogueado);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +234,7 @@ public class Implementos_Datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;

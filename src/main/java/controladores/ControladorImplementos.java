@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Implemento;
 import modelos.daos.ImplementoDAO;
+import vistas.FormImplementos;
 import vistas.FormMenuPrincipal;
 import vistas.Implementos_Datos;
 import vistas.Matricula_Datos;
@@ -56,9 +57,29 @@ public class ControladorImplementos {
         }
     }
         
+    public void registrarImplemento(Implemento i, FormImplementos vista) {
+
+        boolean ok = dao.registrarImplementoCompleto(
+                i.getIdImplemento(),
+                i.getNombre(),
+                i.getTipo(),
+                i.getStock(),
+                i.getPrecio()
+        );
+
+        if (ok) {
+            JOptionPane.showMessageDialog(vista, "Implemento registrado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(vista, "Error al registrar Implemento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
         public void retrocederAMenu4(Implementos_Datos vista, modelos.Usuario usuarioLogueado) {
         vista.dispose();
         FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
         menu.setVisible(true);
+    }
+        public void retrocederAMenu5(FormImplementos vista, modelos.Usuario usuarioLogueado) {
+        vista.dispose();
     }
 }
