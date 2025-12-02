@@ -95,7 +95,9 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         ListarProfesores = new javax.swing.JMenuItem();
         RegistrarProfesor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,9 +279,24 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("CLASES");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem1.setText("Listar Clases");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("IMPLEMENTOS");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem2.setText("Listar Implementos");
+        jMenu5.add(jMenuItem2);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -304,11 +321,13 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+            Implementos_Datos matriculatabla = new Implementos_Datos(usuarioLogueado);
+            matriculatabla.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        
+            
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnVentanaAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaAlumnoActionPerformed
@@ -357,6 +376,10 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
             FormProfesor formulario = new FormProfesor();
             formulario.setVisible(true);
     }//GEN-LAST:event_RegistrarProfesorActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -387,6 +410,8 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAvatar;
     // End of variables declaration//GEN-END:variables

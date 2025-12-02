@@ -5,97 +5,108 @@ import modelos.Implemento;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelos.Cconexion;
 
 public class ImplementoDAO {
-    private Connection connection;
+    private Cconexion con = new Cconexion();
 
-    public ImplementoDAO(Connection connection) {
-        this.connection = connection;
-    }
+    public DefaultTableModel mostrarImplementos(String nombreTabla) {
 
-    // Agregar implemento
-    public boolean agregarImplemento(Implemento imp) {
-        String sql = "INSERT INTO IMPLEMENTO (id_implemento, Nombre, Tipo, Stock, Precio) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, imp.getIdImplemento());
-            ps.setString(2, imp.getNombre());
-            ps.setString(3, imp.getTipo());
-            ps.setInt(4, imp.getStock());
-            ps.setDouble(5, imp.getPrecio());
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+        // 1. Configurar el modelo de tabla
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("id_implemento");
+        model.addColumn("Nombre");
+        model.addColumn("Tipo");
+        model.addColumn("Stock");
+        model.addColumn("Precio");
 
-    // Buscar implemento por ID
-    public Implemento buscarPorId(String idImplemento) {
-        String sql = "SELECT * FROM IMPLEMENTO WHERE id_implemento = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, idImplemento);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Implemento(
-                        rs.getString("id_implemento"),
-                        rs.getString("Nombre"),
-                        rs.getString("Tipo"),
-                        rs.getInt("Stock"),
-                        rs.getDouble("Precio")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+        String sql = "SELECT * FROM " + nombreTabla + ";";
 
-    // Actualizar implemento
-    public boolean actualizarImplemento(Implemento imp) {
-        String sql = "UPDATE IMPLEMENTO SET Nombre = ?, Tipo = ?, Stock = ?, Precio = ? WHERE id_implemento = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, imp.getNombre());
-            ps.setString(2, imp.getTipo());
-            ps.setInt(3, imp.getStock());
-            ps.setDouble(4, imp.getPrecio());
-            ps.setString(5, imp.getIdImplemento());
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
-    // Eliminar implemento
-    public boolean eliminarImplemento(String idImplemento) {
-        String sql = "DELETE FROM IMPLEMENTO WHERE id_implemento = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, idImplemento);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+        try (Connection conexion = con.estableConexion(); Statement st = conexion.createStatement(); ResultSet rs = st.executeQuery(sql)) { 
 
-    // Listar todos los implementos
-    public List<Implemento> listarImplementos() {
-        List<Implemento> lista = new ArrayList<>();
-        String sql = "SELECT * FROM IMPLEMENTO";
-        try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
+            String[] datos = new String[5];
+
             while (rs.next()) {
-                lista.add(new Implemento(
-                        rs.getString("id_implemento"),
-                        rs.getString("Nombre"),
-                        rs.getString("Tipo"),
-                        rs.getInt("Stock"),
-                        rs.getDouble("Precio")
-                ));
+
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                model.addRow(datos);
+                
             }
+
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            System.err.println("Error al obtener datos de Implementos: " + e.getMessage());
+
+            return new DefaultTableModel();
         }
-        return lista;
+        
+        return model;
+    }
+    
+    public DefaultTableModel crearModeloEditable(ResultSet rs) throws SQLException {
+
+        // Usamos un modelo anónimo que permite la edición
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[]{"id_implemento", "Nombre", "Tipo", "Stock", "Precio"}, 0) {
+
+            // Sobrescribimos el método isCellEditable
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column != 0;
+            }
+        };
+
+        // ... Código para llenar el modelo con rs.next() ...
+        return model;
+    }
+    
+        public boolean eliminarMatricula(String id_implemento) {
+        String sql = "DELETE FROM IMPLEMENTO WHERE id_implemento = ?";
+        Cconexion con = new Cconexion();
+
+        try (Connection conexion = con.estableConexion(); // Usamos PreparedStatement
+                 java.sql.PreparedStatement pst = conexion.prepareStatement(sql)) {
+
+            pst.setString(1, id_implemento); // Asigna el ID al primer '?'
+
+            int filasAfectadas = pst.executeUpdate();
+            return filasAfectadas > 0; // Retorna true si se eliminó al menos una fila
+
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar Implemento: " + e.getMessage());
+            return false;
+        }
+    }
+        
+            public boolean modificarImplemento(Implemento implemento) {
+
+        String sql = "UPDATE IMPLEMENTO SET "
+                + "Nombre=?, Tipo=?, Stock=?, Precio=? "
+                + "WHERE id_implemento=?";
+
+        Cconexion con = new Cconexion();
+
+        try (Connection conexion = con.estableConexion(); PreparedStatement pst = conexion.prepareStatement(sql)) {
+
+            // Asignación de valores usando los Getters del objeto Matricula
+            pst.setString(1, implemento.getNombre()); // Usamos setDate para java.sql.Date
+            pst.setString(2, implemento.getTipo());
+            pst.setInt(3, implemento.getStock());
+            pst.setDouble(4, implemento.getPrecio());
+            pst.setString(5, implemento.getIdImplemento()); // WHERE
+
+            int filasAfectadas = pst.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error al modificar matrícula en DAO: " + e.getMessage());
+            return false;
+        }
     }
 }

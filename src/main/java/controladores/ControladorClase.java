@@ -27,7 +27,7 @@ public class ControladorClase {
             return;
         }
         
-        if (dao.modificarMatricula(clase)) {
+        if (dao.modificarClase(clase)) {
             JOptionPane.showMessageDialog(vista, "Clase modificada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             
             vista.mostrarDatosEnVisor("CLASES");

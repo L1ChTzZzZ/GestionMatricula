@@ -83,10 +83,10 @@ public class ClaseDAO {
     }
     
     
-    public boolean modificarMatricula(Clase clase) {
+    public boolean modificarClase(Clase clase) {
 
-        String sql = "UPDATE MATRICULA SET "
-                + "Horario=?, Mensualidad=?"
+        String sql = "UPDATE CLASES SET "
+                + "Horario=?, Mensualidad=? "
                 + "WHERE id_clase=?";
 
         Cconexion con = new Cconexion();
@@ -102,7 +102,7 @@ public class ClaseDAO {
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
-            System.err.println("Error al modificar matrícula en DAO: " + e.getMessage());
+            System.err.println("Error al modificar Clases en DAO: " + e.getMessage());
             return false;
         }
     }

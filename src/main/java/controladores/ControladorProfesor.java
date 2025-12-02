@@ -97,4 +97,7 @@ public class ControladorProfesor {
         FormMenuPrincipal menu = new FormMenuPrincipal(usuarioLogueado);
         menu.setVisible(true);
     }
+        public void retrocederAMenu2(Profesores_Datos vista) {
+        vista.dispose();
+    }
 }

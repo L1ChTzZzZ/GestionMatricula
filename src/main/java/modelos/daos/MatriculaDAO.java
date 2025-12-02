@@ -166,7 +166,7 @@ public class MatriculaDAO {
     }
     
         public boolean registrarMatriculaCompleta(
-             String idAlumno, 
+             String Dni_alumno, 
              String tipoPago, 
              Date fechaPago, 
              String idClase, 
@@ -204,7 +204,7 @@ public class MatriculaDAO {
              // 3. INSERTAR MATRÍCULA
              String sqlMatricula = """
                  INSERT INTO MATRICULA 
-                 (id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, id_alumno, id_clase)
+                 (id_matricula, Fecha_pago, Monto_total, Tipo_pago, id_usuario, Dni_alumno, id_clase)
                  VALUES (?, ?, ?, ?, ?, ?, ?)
              """;
 
@@ -214,7 +214,7 @@ public class MatriculaDAO {
                  ps.setDouble(3, monto);
                  ps.setString(4, tipoPago);
                  ps.setString(5, idUsuario);
-                 ps.setString(6, idAlumno);   // <-- CORRECTO
+                 ps.setString(6, Dni_alumno);   // <-- CORRECTO
                  ps.setString(7, idClase);
                  ps.executeUpdate();
              }

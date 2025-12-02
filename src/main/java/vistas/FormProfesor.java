@@ -11,6 +11,7 @@ public class FormProfesor extends javax.swing.JFrame {
    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProfesor.class.getName());
    private Profesores_Datos vistaAnterior;
    private ControladorProfesor controller = new ControladorProfesor();
+   
     
     FormProfesor() {
         initComponents();
@@ -32,6 +33,7 @@ public class FormProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        btnAtras = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -71,6 +73,11 @@ public class FormProfesor extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel2.setMinimumSize(new java.awt.Dimension(670, 620));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAtras.setText("<");
+        btnAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAtras.addActionListener(this::btnAtrasActionPerformed);
+        jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 59, 30));
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         btnAgregar.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -295,6 +302,10 @@ public class FormProfesor extends javax.swing.JFrame {
         formulario.setVisible(true);
     }//GEN-LAST:event_RegistrarProfesorActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -326,6 +337,7 @@ public class FormProfesor extends javax.swing.JFrame {
     private javax.swing.JMenuItem RegistrarMatricula;
     private javax.swing.JMenuItem RegistrarProfesor;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -94,4 +94,8 @@ public class ControladorMatricula {
         Profesores_Datos menu = new Profesores_Datos(usuarioLogueado);
         menu.setVisible(true);
     }
+    
+        public void retrocederADatosAlumno2(FormAlumno vista, modelos.Usuario usuarioLogueado) {
+        vista.dispose();
+    }
 }

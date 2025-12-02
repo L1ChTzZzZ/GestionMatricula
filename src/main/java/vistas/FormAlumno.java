@@ -277,7 +277,7 @@ public class FormAlumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        controller.retrocederADatosAlumno(this, usuarioLogueado);
+        controller.retrocederADatosAlumno2(this, usuarioLogueado);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed

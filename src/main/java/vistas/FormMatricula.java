@@ -258,6 +258,7 @@ public class FormMatricula extends javax.swing.JFrame {
         });
         jPanel2.add(txtBuscarDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 140, -1));
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -432,6 +433,7 @@ public class FormMatricula extends javax.swing.JFrame {
         if (alumno != null) {
             txtNombre.setText(alumno.getNombre());
             txtApellido.setText(alumno.getApellido());
+            dniAlumnoSeleccionado = alumno.getDniAlumno();
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró un alumno con ese DNI");
         }
